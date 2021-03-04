@@ -1,0 +1,11 @@
+{
+  "name": "Enjoei GraphQL Schema",
+  "schemaPath": "/schema.json",
+  "extensions": {
+    "endpoints": {
+      "Dev GraphQL Endpoint": {
+        "url": "https://enjusearch.enjoei.com.br/graphql-search"
+      }
+    }
+  }
+}

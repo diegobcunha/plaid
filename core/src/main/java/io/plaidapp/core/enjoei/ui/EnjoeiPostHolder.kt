@@ -4,11 +4,11 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class EnjoeiPostHolder(
-    itemvView: View,
+    itemView: View,
     private val viewClicked: () -> Unit
-) : RecyclerView.ViewHolder(itemvView) {
+) : RecyclerView.ViewHolder(itemView) {
 
     init {
-        itemvView.setOnClickListener { viewClicked.invoke() }
+        itemView.setOnClickListener { viewClicked.invoke() }
     }
 }

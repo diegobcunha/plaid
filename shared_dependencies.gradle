@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+apply plugin: 'com.apollographql.apollo'
+
 dependencies {
     implementation "com.google.android.material:material:${versions.material}"
     implementation "com.google.dagger:dagger:${versions.dagger}"
@@ -23,4 +26,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+    implementation "com.apollographql.apollo:apollo-runtime:${versions.apolloGraphQL}"
+    implementation ("com.apollographql.apollo:apollo-coroutines-support:${versions.apolloGraphQL}") {
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-core-jvm'
+    }
+}
+
+apollo {
+    generateKotlinModels.set(true)
 }
