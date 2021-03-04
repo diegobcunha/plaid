@@ -39,6 +39,7 @@ import io.plaidapp.core.ui.filter.SourcesHighlightUiModel
 import io.plaidapp.designerNewsSource
 import io.plaidapp.designerNewsSourceUiModel
 import io.plaidapp.dribbbleSource
+import io.plaidapp.enjoei
 import io.plaidapp.post
 import io.plaidapp.shot
 import io.plaidapp.story
@@ -284,7 +285,7 @@ class HomeViewModelTest {
     @Test
     fun filtersRemoved() = coroutinesRule.runBlocking {
         // Given a view model with feed data
-        val homeViewModel = createViewModelWithFeedData(listOf(post, shot, story))
+        val homeViewModel = createViewModelWithFeedData(listOf(enjoei, post, shot, story))
         verify(sourcesRepository).registerFilterChangedCallback(
             capture(filtersChangedCallback)
         )
@@ -294,7 +295,7 @@ class HomeViewModelTest {
 
         // Then feed emits a new list, without the removed filter
         val feed = homeViewModel.getFeed(columns).getOrAwaitValue()
-        assertEquals(listOf(post, story), feed.items)
+        assertEquals(listOf(enjoei, post, story), feed.items)
     }
 
     @Test
@@ -318,7 +319,7 @@ class HomeViewModelTest {
     @Test
     fun filtersChanged_inactiveSource() = coroutinesRule.runBlocking {
         // Given a view model with feed data
-        val homeViewModel = createViewModelWithFeedData(listOf(post, shot, story))
+        val homeViewModel = createViewModelWithFeedData(listOf(enjoei, post, shot, story))
         verify(sourcesRepository).registerFilterChangedCallback(
             capture(filtersChangedCallback)
         )
@@ -329,7 +330,7 @@ class HomeViewModelTest {
 
         // Then feed emits a new list, without the removed filter
         val feed = homeViewModel.getFeed(columns).getOrAwaitValue()
-        assertEquals(listOf(post, story), feed.items)
+        assertEquals(listOf(enjoei, post, story), feed.items)
     }
 
     @Test
@@ -376,11 +377,11 @@ class HomeViewModelTest {
         verify(dataManager).setOnDataLoadedCallback(capture(dataLoadedCallback))
 
         // When data loaded
-        dataLoadedCallback.value.onDataLoaded(listOf(post, shot, story))
+        dataLoadedCallback.value.onDataLoaded(listOf(enjoei, post, shot, story))
 
         // Then feed emits a new list
         val feed = homeViewModel.getFeed(2).getOrAwaitValue()
-        assertEquals(listOf(post, story, shot), feed.items)
+        assertEquals(listOf(enjoei, post, shot, story), feed.items)
     }
 
     private fun createViewModelWithFeedData(feedData: List<PlaidItem>): HomeViewModel {

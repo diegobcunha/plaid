@@ -48,6 +48,8 @@ import io.plaidapp.core.data.pocket.PocketUtils
 import io.plaidapp.core.designernews.data.stories.model.Story
 import io.plaidapp.core.designernews.ui.stories.StoryViewHolder
 import io.plaidapp.core.dribbble.data.api.model.Shot
+import io.plaidapp.core.enjoei.data.Enjoei
+import io.plaidapp.core.enjoei.ui.EnjoeiPostHolder
 import io.plaidapp.core.producthunt.data.api.model.Post
 import io.plaidapp.core.producthunt.ui.ProductHuntPostHolder
 import io.plaidapp.core.ui.DribbbleShotHolder
@@ -118,6 +120,7 @@ class FeedAdapter(
             TYPE_DESIGNER_NEWS_STORY -> createDesignerNewsStoryHolder(parent)
             TYPE_DRIBBBLE_SHOT -> createDribbbleShotHolder(parent)
             TYPE_PRODUCT_HUNT_POST -> createProductHuntStoryHolder(parent)
+            TYPE_ENJOEI -> createEnjoeyHolder(parent)
             TYPE_LOADING_MORE -> LoadingMoreHolder(
                 layoutInflater.inflate(R.layout.infinite_loading, parent, false)
             )
@@ -132,6 +135,7 @@ class FeedAdapter(
                 (getItem(position) as Shot), holder as DribbbleShotHolder, position
             )
             TYPE_PRODUCT_HUNT_POST -> (holder as ProductHuntPostHolder).bind((getItem(position) as Post))
+            TYPE_ENJOEI -> (holder as EnjoeiPostHolder)
             TYPE_LOADING_MORE -> bindLoadingViewHolder(holder as LoadingMoreHolder, position)
             else -> throw IllegalStateException("Unsupported View type")
         }
@@ -285,6 +289,12 @@ class FeedAdapter(
             })
     }
 
+    private fun createEnjoeyHolder(parent: ViewGroup): EnjoeiPostHolder {
+        return EnjoeiPostHolder(
+            layoutInflater.inflate(R.layout.enjoei_item, parent, false),
+            { openEnjoeiScreen() })
+    }
+
     private fun openTabForProductHunt(uri: String) {
         CustomTabActivityHelper.openCustomTab(
             host,
@@ -294,6 +304,12 @@ class FeedAdapter(
                 .build(),
             Uri.parse(uri)
         )
+    }
+
+    private fun openEnjoeiScreen() {
+        val intent = intentTo(Activities.Enjoei)
+        host.startActivity(intent)
+
     }
 
     private fun bindLoadingViewHolder(holder: LoadingMoreHolder, position: Int) {
@@ -309,6 +325,7 @@ class FeedAdapter(
                 is Story -> return TYPE_DESIGNER_NEWS_STORY
                 is Shot -> return TYPE_DRIBBBLE_SHOT
                 is Post -> return TYPE_PRODUCT_HUNT_POST
+                is Enjoei -> return TYPE_ENJOEI
             }
         }
         return TYPE_LOADING_MORE
@@ -388,6 +405,7 @@ class FeedAdapter(
         private const val TYPE_DESIGNER_NEWS_STORY = 0
         private const val TYPE_DRIBBBLE_SHOT = 1
         private const val TYPE_PRODUCT_HUNT_POST = 2
+        private const val TYPE_ENJOEI = 3
         private const val TYPE_LOADING_MORE = -1
 
         fun createSharedElementReenterCallback(

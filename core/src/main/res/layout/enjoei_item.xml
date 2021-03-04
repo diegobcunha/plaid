@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.plaidapp.core.ui.widget.FourThreeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/enjoei_item"
+    android:elevation="@dimen/z_card"
+    android:foreground="@drawable/dark_ripple"
+    android:orientation="vertical"
+    android:stateListAnimator="@animator/raise">
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="24dp"
+        android:src="@drawable/ic_icon_enjoy_white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="20dp"
+        android:gravity="center_vertical"
+        android:src="@drawable/ic_arrow_right" />
+
+
+</io.plaidapp.core.ui.widget.FourThreeLinearLayout>

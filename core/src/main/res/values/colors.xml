@@ -76,6 +76,8 @@
     <!-- product hunt-->
     <color name="product_hunt">#ffff9800</color> <!--orange 500 -->
 
+    <color name="enjoei_item">#F05B78</color>
+
     <array name="loading_placeholders_dark">
         <item>#ff191919</item>
         <item>#ff212121</item>

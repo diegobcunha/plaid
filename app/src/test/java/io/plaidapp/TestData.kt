@@ -23,6 +23,7 @@ import io.plaidapp.core.dribbble.data.DribbbleSourceItem
 import io.plaidapp.core.dribbble.data.api.model.Images
 import io.plaidapp.core.dribbble.data.api.model.Shot
 import io.plaidapp.core.dribbble.data.api.model.User
+import io.plaidapp.core.enjoei.data.Enjoei
 import io.plaidapp.core.producthunt.data.api.model.Post
 import io.plaidapp.core.ui.filter.SourceUiModel
 import java.util.Date
@@ -54,6 +55,8 @@ val post = Post(
     commentsCount = 5,
     votesCount = 100
 )
+
+val enjoei = Enjoei(12345, "Enjoei Post", "https://google.com.br")
 
 val player = User(
     id = 1L,

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="io.plaidapp.enjoeimodule">
 
@@ -10,6 +9,20 @@
         dist:title="@string/feature_name_about">
         <dist:fusing dist:include="true" />
     </dist:module>
+
+    <application android:name="io.plaidapp.ui.PlaidApplication">
+
+        <activity
+            android:name="io.plaidapp.enjoeimodule.view.list.EnjoeiActivity"
+            android:parentActivityName="io.plaidapp.ui.HomeActivity"
+            android:theme="@style/Plaid.Home">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+        </activity>
+    </application>
 
 
 </manifest>

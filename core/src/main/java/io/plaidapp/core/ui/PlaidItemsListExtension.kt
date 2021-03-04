@@ -24,10 +24,11 @@ import io.plaidapp.core.designernews.data.stories.model.Story
 import io.plaidapp.core.designernews.domain.StoryWeigher
 import io.plaidapp.core.dribbble.data.api.ShotWeigher
 import io.plaidapp.core.dribbble.data.api.model.Shot
+import io.plaidapp.core.enjoei.data.Enjoei
 import io.plaidapp.core.producthunt.data.ProductHuntSourceItem.Companion.SOURCE_PRODUCT_HUNT
 import io.plaidapp.core.producthunt.data.api.PostWeigher
 import io.plaidapp.core.producthunt.data.api.model.Post
-import java.util.Collections
+import java.util.*
 
 /**
  * Prepares items for display of de-duplicating items and sorting them (depending on the data
@@ -49,6 +50,17 @@ fun getPlaidItemsForDisplay(
     newItems: List<PlaidItem>
 ): List<PlaidItem> {
     val itemsToBeDisplayed = oldItems.toMutableList()
+
+    if (itemsToBeDisplayed.isEmpty() && newItems.isNotEmpty()) {
+        itemsToBeDisplayed.add(
+            0,
+            Enjoei(
+                12345,
+                "Enjoei Post",
+                "https://google.com.br"
+            )
+        )
+    }
     weighItems(newItems.toMutableList())
     deduplicateAndAdd(itemsToBeDisplayed, newItems)
     sort(itemsToBeDisplayed)
